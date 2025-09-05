@@ -2,6 +2,7 @@ import { Routes, Route } from "react-router-dom";
 import Dashboard from "./components/Dashboard";
 import Layout from "./components/Layout";
 import Login from "./components/login";
+import Leaves from "./components/Leaves";
 function App() {
   return (
     <Routes>
@@ -14,7 +15,7 @@ function App() {
         <Route path="/employee" element={<h2>Manage Employee Page</h2>} />
         <Route path="/settings" element={<h2>Employee Settings Page</h2>} />
         <Route path="/attendance" element={<h2>Manage Attendance Page</h2>} />
-        <Route path="/leaves" element={<h2>Manage Leaves Page</h2>} />
+        <Route path="/leaves" element={<Leaves/>} />
       </Route>
     </Routes>
   );
