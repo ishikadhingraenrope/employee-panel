@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 
 function Leaves() {
   const [formData, setFormData] = useState({
+    employeeName: "",
     leaveType: "",
     startDate: "",
     endDate: "",
@@ -9,7 +10,7 @@ function Leaves() {
     reason: "",
     document: null,
     contact: "",
-    backup: ""
+    backup: "",
   });
 
   const [leaves, setLeaves] = useState([]);
@@ -53,6 +54,7 @@ function Leaves() {
     alert("Leave Application Submitted ✅");
 
     setFormData({
+      employeeName: "",
       leaveType: "",
       startDate: "",
       endDate: "",
@@ -60,18 +62,32 @@ function Leaves() {
       reason: "",
       document: null,
       contact: "",
-      backup: ""
+      backup: "",
     });
   };
 
   return (
-    <div className="max-w-6xl mx-auto bg-white   mt-6 1`
-     shadow-md rounded-lg p-4 sm:p-6 mb-4 sm:mb-6">
+    <div className="max-w-6xl mx-auto bg-white mt-6 shadow-md rounded-lg p-4 sm:p-6 mb-4 sm:mb-6">
       <h1 className="text-2xl font-semibold text-gray-800 mb-6 text-center">
         Leave Application Form
       </h1>
 
       <form onSubmit={handleSubmit} className="space-y-5">
+        {/* Employee Name */}
+        <div>
+          <label className="block text-gray-700 font-medium mb-1">
+            Employee Name
+          </label>
+          <input
+            type="text"
+            name="employeeName"
+            value={formData.employeeName}
+            onChange={handleChange}
+            placeholder="Enter your name"
+            className="w-full border rounded-lg px-3 py-2 focus:ring focus:ring-blue-300 focus:outline-none"
+            required
+          />
+        </div>
 
         {/* Leave Type */}
         <div>
@@ -86,10 +102,10 @@ function Leaves() {
             required
           >
             <option value="">-- Select Leave Type --</option>
-            <option value="casual">Casual Leave</option>
-            <option value="sick">Sick Leave</option>
-            <option value="paid">Paid Leave</option>
-            <option value="wfh">Work From Home</option>
+            <option value="Casual">Casual Leave</option>
+            <option value="Sick">Sick Leave</option>
+            <option value="Paid">Paid Leave</option>
+            <option value="WFH">Work From Home</option>
           </select>
         </div>
 
@@ -209,7 +225,7 @@ function Leaves() {
       </form>
 
       {/* Show stored leaves */}
-      <div className=" bg-white shadow-md rounded-lg mt-2">
+      <div className="bg-white shadow-md rounded-lg mt-6">
         <h2 className="text-lg font-semibold text-gray-800 mb-3">
           My Applied Leaves
         </h2>
@@ -217,24 +233,30 @@ function Leaves() {
           <p className="text-gray-500">No leaves applied yet.</p>
         ) : (
           <div className="overflow-x-auto">
-            <table className="w-full  border-collapse border border-gray-300 text-sm">
+            <table className="w-full border-collapse border border-gray-300 text-sm">
               <thead>
                 <tr className="bg-gray-100 text-left">
+                  <th className="border px-3 py-2">Employee</th>
                   <th className="border px-3 py-2">Type</th>
                   <th className="border px-3 py-2">Start Date</th>
                   <th className="border px-3 py-2">End Date</th>
                   <th className="border px-3 py-2">Days</th>
                   <th className="border px-3 py-2">Reason</th>
+                  <th className="border px-3 py-2">Contact</th>
+                  <th className="border px-3 py-2">Backup Employee</th>
                 </tr>
               </thead>
               <tbody>
                 {leaves.map((leave, index) => (
                   <tr key={index} className="hover:bg-gray-50">
+                    <td className="border px-3 py-2">{leave.employeeName}</td>
                     <td className="border px-3 py-2">{leave.leaveType}</td>
                     <td className="border px-3 py-2">{leave.startDate}</td>
                     <td className="border px-3 py-2">{leave.endDate}</td>
                     <td className="border px-3 py-2">{leave.totalDays}</td>
                     <td className="border px-3 py-2">{leave.reason || "-"}</td>
+                    <td className="border px-3 py-2">{leave.contact || "-"}</td>
+                    <td className="border px-3 py-2">{leave.backup || "-"}</td>
                   </tr>
                 ))}
               </tbody>

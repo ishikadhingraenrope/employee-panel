@@ -7,7 +7,7 @@ import {
   ClipboardList,
   LogOut,
 } from "lucide-react";
-import Leaves from "./Leaves";
+
 import { Link } from "react-router-dom";
 const handleLogout = () => {
     localStorage.removeItem("userData");
@@ -48,28 +48,28 @@ function Sidebar() {
       {/* Menu Items */}
       <nav className="flex-1 px-3 py-4 space-y-2">
         <Link
-          to={"#"}
+          to={"/"}
           className="flex items-center gap-3 px-4 py-2 rounded-md bg-[#86d7d4] text-black font-medium"
         >
           <LayoutDashboard size={18} /> Dashboard
         </Link>
 
         <Link
-          to={"#"}
+          to={"/"}
           className="flex items-center gap-3 px-4 py-2 rounded-md text-gray-700 hover:bg-gray-100"
         >
           <Users size={18} /> Employee Details
         </Link>
 
         <Link
-         to={"#"}
+         to={"/"}
           className="flex items-center gap-3 px-4 py-2 rounded-md text-gray-700 hover:bg-gray-100"
         >
           <Settings size={18} /> User Settings
         </Link>
 
         <Link
-          to={"#"}
+          to={"/"}
           className="flex items-center gap-3 px-4 py-2 rounded-md text-gray-700 hover:bg-gray-100"
         >
           <CalendarCheck size={18} /> Manage Attendance
@@ -80,6 +80,12 @@ function Sidebar() {
           className="flex items-center gap-3 px-4 py-2 rounded-md text-gray-700 hover:bg-gray-100"
         >
           <ClipboardList size={18} /> Employee Leaves
+        </Link>
+        <Link
+          to={"/ManageLeave"}
+          className="flex items-center gap-3 px-4 py-2 rounded-md text-gray-700 hover:bg-gray-100"
+        >
+          <ClipboardList size={18} /> Manage Leaves
         </Link>
       </nav>
 
