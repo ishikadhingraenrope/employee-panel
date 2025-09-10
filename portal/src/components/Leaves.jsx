@@ -1,5 +1,13 @@
 import React, { useState, useEffect } from "react";
-
+import {
+  EllipsisVertical,
+  Edit2,
+  Trash2,
+  User,
+  MoreVertical,
+  Calendar,
+  Droplet,
+} from "lucide-react";
 function Leaves() {
   const [formData, setFormData] = useState({
     employeeName: "",
@@ -67,170 +75,170 @@ function Leaves() {
   };
 
   return (
-    <div className="max-w-6xl mx-auto bg-white mt-6 shadow-md rounded-lg p-4 sm:p-6 mb-4 sm:mb-6">
-      <h1 className="text-2xl font-semibold text-gray-800 mb-6 text-center">
-        Leave Application Form
-      </h1>
-
-      <form onSubmit={handleSubmit} className="space-y-5">
-        {/* Employee Name */}
-        <div>
-          <label className="block text-gray-700 font-medium mb-1">
-            Employee Name
-          </label>
-          <input
-            type="text"
-            name="employeeName"
-            value={formData.employeeName}
-            onChange={handleChange}
-            placeholder="Enter your name"
-            className="w-full border rounded-lg px-3 py-2 focus:ring focus:ring-blue-300 focus:outline-none"
-            required
-          />
+    <div className="px-8 py-4  space-y-6  bg-gray-100 mb-8">
+      <div>
+        <div className="flex gap-2">
+          <Calendar h-6 w-6 />
+          <h1 className="text-xl  font-semibold">Employee Leave</h1>
         </div>
+        <p className="text-xs sm:text-sm text-gray-500">
+          Add, edit, and manage employee leave
+        </p>
+      </div>
 
-        {/* Leave Type */}
-        <div>
-          <label className="block text-gray-700 font-medium mb-1">
-            Leave Type
-          </label>
-          <select
-            name="leaveType"
-            value={formData.leaveType}
-            onChange={handleChange}
-            className="w-full border rounded-lg px-3 py-2 focus:ring focus:ring-blue-300 focus:outline-none"
-            required
+      <div className="bg-white shadow-md rounded-lg p-4 sm:p-6 mb-4 sm:mb-6">
+        <div className="flex justify-between mb-4 items-center">
+          <h3 className="text-base sm:text-lg font-semibold">
+            Apply For Leave
+          </h3>
+        </div>
+        <form onSubmit={handleSubmit} className="space-y-5">
+          {/* Employee Name */}
+         
+
+          {/* Leave Type */}
+          <div>
+            <label className="block text-gray-700 font-medium mb-1">
+              Leave Type
+            </label>
+            <select
+              name="leaveType"
+              value={formData.leaveType}
+              onChange={handleChange}
+              className="w-full border rounded-lg px-3 py-2 focus:ring focus:ring-blue-300 focus:outline-none"
+              required
+            >
+              <option value="">-- Select Leave Type --</option>
+              <option value="Casual">Casual Leave</option>
+              <option value="Sick">Sick Leave</option>
+              <option value="Paid">Paid Leave</option>
+              <option value="WFH">Work From Home</option>
+            </select>
+          </div>
+
+          {/* Start Date / End Date */}
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div>
+              <label className="block text-gray-700 font-medium mb-1">
+                Start Date
+              </label>
+              <input
+                type="date"
+                name="startDate"
+                value={formData.startDate}
+                onChange={handleChange}
+                className="w-full border rounded-lg px-3 py-2 focus:ring focus:ring-blue-300 focus:outline-none"
+                required
+              />
+            </div>
+            <div>
+              <label className="block text-gray-700 font-medium mb-1">
+                End Date
+              </label>
+              <input
+                type="date"
+                name="endDate"
+                value={formData.endDate}
+                onChange={handleChange}
+                className="w-full border rounded-lg px-3 py-2 focus:ring focus:ring-blue-300 focus:outline-none"
+                required
+              />
+            </div>
+          </div>
+
+          {/* Total Days */}
+          <div>
+            <label className="block text-gray-700 font-medium mb-1">
+              Total Days
+            </label>
+            <input
+              type="text"
+              name="totalDays"
+              value={formData.totalDays}
+              readOnly
+              className="w-full border rounded-lg px-3 py-2 bg-gray-100 text-gray-600"
+            />
+          </div>
+
+          {/* Reason */}
+          <div>
+            <label className="block text-gray-700 font-medium mb-1">
+              Reason 
+            </label>
+            <textarea
+              name="reason"
+              value={formData.reason}
+              onChange={handleChange}
+              placeholder="Enter reason for leave"
+              className="w-full border rounded-lg px-3 py-2 focus:ring focus:ring-blue-300 focus:outline-none"
+            />
+          </div>
+
+          {/* Document Upload */}
+          <div>
+            <label className="block text-gray-700 font-medium mb-1">
+              Supporting Document (optional)
+            </label>
+            <input
+              type="file"
+              name="document"
+              onChange={handleChange}
+              className="w-full"
+            />
+            {formData.document && (
+              <p className="text-sm text-green-600 mt-1">
+                Uploaded: {formData.document}
+              </p>
+            )}
+          </div>
+
+          {/* Contact / Backup */}
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div>
+              <label className="block text-gray-700 font-medium mb-1">
+                Contact During Leave
+              </label>
+              <input
+                type="text"
+                name="contact"
+                value={formData.contact}
+                onChange={handleChange}
+                placeholder="Enter contact number"
+                className="w-full border rounded-lg px-3 py-2 focus:ring focus:ring-blue-300 focus:outline-none"
+              />
+            </div>
+            <div>
+              <label className="block text-gray-700 font-medium mb-1">
+                Backup Employee
+              </label>
+              <input
+                type="text"
+                name="backup"
+                value={formData.backup}
+                onChange={handleChange}
+                placeholder="Enter backup employee"
+                className="w-full border rounded-lg px-3 py-2 focus:ring focus:ring-blue-300 focus:outline-none"
+              />
+            </div>
+          </div>
+
+          {/* Submit Button */}
+          <button
+            type="submit"
+            className="w-max-2lg bg-[#86d7d4] text-white py-2 px-4 rounded-lg hover:bg-[#76e7e3] transition cursor-pointer"
           >
-            <option value="">-- Select Leave Type --</option>
-            <option value="Casual">Casual Leave</option>
-            <option value="Sick">Sick Leave</option>
-            <option value="Paid">Paid Leave</option>
-            <option value="WFH">Work From Home</option>
-          </select>
+            Apply Leave
+          </button>
+        </form>
+      </div>
+      <div className="bg-white shadow-md rounded-lg mt-2">
+        <div className="flex flex-col justify-between items-left p-6 border-b border-gray-200 ">
+          <h2 className="text-lg font-semibold mb-1 ">All Leaves</h2>
+          <p className="text-sm text-gray-600">View your leaves</p>
         </div>
-
-        {/* Start Date / End Date */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-          <div>
-            <label className="block text-gray-700 font-medium mb-1">
-              Start Date
-            </label>
-            <input
-              type="date"
-              name="startDate"
-              value={formData.startDate}
-              onChange={handleChange}
-              className="w-full border rounded-lg px-3 py-2 focus:ring focus:ring-blue-300 focus:outline-none"
-              required
-            />
-          </div>
-          <div>
-            <label className="block text-gray-700 font-medium mb-1">
-              End Date
-            </label>
-            <input
-              type="date"
-              name="endDate"
-              value={formData.endDate}
-              onChange={handleChange}
-              className="w-full border rounded-lg px-3 py-2 focus:ring focus:ring-blue-300 focus:outline-none"
-              required
-            />
-          </div>
-        </div>
-
-        {/* Total Days */}
-        <div>
-          <label className="block text-gray-700 font-medium mb-1">
-            Total Days
-          </label>
-          <input
-            type="text"
-            name="totalDays"
-            value={formData.totalDays}
-            readOnly
-            className="w-full border rounded-lg px-3 py-2 bg-gray-100 text-gray-600"
-          />
-        </div>
-
-        {/* Reason */}
-        <div>
-          <label className="block text-gray-700 font-medium mb-1">
-            Reason (optional)
-          </label>
-          <textarea
-            name="reason"
-            value={formData.reason}
-            onChange={handleChange}
-            placeholder="Enter reason for leave"
-            className="w-full border rounded-lg px-3 py-2 focus:ring focus:ring-blue-300 focus:outline-none"
-          />
-        </div>
-
-        {/* Document Upload */}
-        <div>
-          <label className="block text-gray-700 font-medium mb-1">
-            Supporting Document
-          </label>
-          <input
-            type="file"
-            name="document"
-            onChange={handleChange}
-            className="w-full"
-          />
-          {formData.document && (
-            <p className="text-sm text-green-600 mt-1">
-              Uploaded: {formData.document}
-            </p>
-          )}
-        </div>
-
-        {/* Contact / Backup */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-          <div>
-            <label className="block text-gray-700 font-medium mb-1">
-              Contact During Leave
-            </label>
-            <input
-              type="text"
-              name="contact"
-              value={formData.contact}
-              onChange={handleChange}
-              placeholder="Enter contact number"
-              className="w-full border rounded-lg px-3 py-2 focus:ring focus:ring-blue-300 focus:outline-none"
-            />
-          </div>
-          <div>
-            <label className="block text-gray-700 font-medium mb-1">
-              Backup Employee
-            </label>
-            <input
-              type="text"
-              name="backup"
-              value={formData.backup}
-              onChange={handleChange}
-              placeholder="Enter backup employee"
-              className="w-full border rounded-lg px-3 py-2 focus:ring focus:ring-blue-300 focus:outline-none"
-            />
-          </div>
-        </div>
-
-        {/* Submit Button */}
-        <button
-          type="submit"
-          className="w-max-2lg bg-[#86d7d4] text-white py-2 px-4 rounded-lg hover:bg-[#76e7e3] transition cursor-pointer"
-        >
-          Apply Leave
-        </button>
-      </form>
-
-      {/* Show stored leaves */}
-      <div className="bg-white shadow-md rounded-lg mt-6">
-        <h2 className="text-lg font-semibold text-gray-800 mb-3">
-          My Applied Leaves
-        </h2>
-        {leaves.length === 0 ? (
-          <p className="text-gray-500">No leaves applied yet.</p>
+        <div className="overflow-x-auto overflow-y-visible scrollbar-hide  [&::-webkit-scrollbar]:hidden -ms-overflow-style-none scrollbar-none">
+          {leaves.length === 0 ? (
+          <p className="text-gray-500 px-5 py-5">No leaves applied yet.</p>
         ) : (
           <div className="overflow-x-auto">
             <table className="w-full border-collapse border border-gray-300 text-sm">
@@ -263,7 +271,10 @@ function Leaves() {
             </table>
           </div>
         )}
+        </div>
       </div>
+
+     
     </div>
   );
 }
